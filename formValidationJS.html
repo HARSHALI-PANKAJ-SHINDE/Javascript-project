@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Javascript</title>
+    <link rel="stylesheet" href="./style.css">
+   
+
+</head>
+<body>
+    <div class="container">
+    
+        
+ <form class="form" id="form">
+    <h1>REGISTRATION </h1>
+    <div class="input-control">
+        <label >Username:</label>
+        <input type="text" name="" id="name" placeholder="Enter Your Name" onkeyup="validateName()">
+        <span id="nameError"></span><br><br>
+         </div>
+
+         <div class="input-control">
+            <label for="email">E-mail ID:</label>
+            <input type="text" name="" id="email" placeholder="Enter Your mail" onkeyup="validateEmail()" >
+            <span id="emailError"></span><br><br> 
+            </div>
+
+            <div class="input-control">
+                <label for="phoneNo">Phone NO.:</label>
+                <input type="tel" name="" id="phone" placeholder="Enter Your Phone NO." onkeyup="validatePhone()">
+                <span id="phoneError"></span><br><br>
+                </div>
+
+                <div class="input-control">
+                    <label for="password">Password:</label>
+                    <input type="password" name="" id="password" placeholder="Enter Your Password" onkeyup="validatePass()">
+                    <span id="passwordError"></span><br><br>
+                    </div>
+                    <button type="submit" id="submit" onclick="return validateForm()">Sign Up</button>
+                    <span id="submitError"></span><br><br>
+                </div>
+               </form>
+  </div>
+
+
+  <script>
+    var nameError = document.getElementById("nameError");
+    var emailError = document.getElementById("emailError");
+     var phoneError = document.getElementById("phoneError");
+    var passwordError = document.getElementById("passwordError");
+      var submitError = document.getElementById("submitError");
+
+      var submitBtn = document.getElementById("submitBtn");
+
+
+ function validateName(){
+    var name = document.getElementById('name').value;
+    
+
+    if (name.length == 0){
+        nameError.innerHTML = 'Name is Required';
+        return false;
+    }
+    if(!name.match (/^[A-Za-z]*\s{1}[A-Za-z]*$/)){
+        nameError.innerHTML = "Enter first and last Name";
+        return false;
+    }
+   nameError.innerHTML = '<p>You Can Continue..</p>';
+   return true;
+}
+
+
+   function validateEmail(){
+   var email = document.getElementById('email').value;
+    
+
+    if(email.length == 0){
+        emailError.innerHTML = 'Email is Required';
+        return false;
+    }
+    if(!email.match (/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)){
+        emailError.innerHTML = "Enter a valid Email";
+        return false;
+    }
+     emailError.innerHTML = '<p> You Can Continue... </p>';
+       return true;
+   
+}
+
+
+ function validatePhone(){
+   var phone = document.getElementById('phone').value;
+    
+
+    if (phone.length ==0){
+        phoneError.innerHTML = 'Phone NO. is Required';
+        return false;
+    }
+     if (phone.length !=10){
+        phoneError.innerHTML = 'Phone NO. Must be 10 digit';
+        return false;
+    }
+    if(!phone.match (/^[0-9]{10}$/)){
+        phoneError.innerHTML = "Enter a valid Phone NO.";
+        return false;
+    }
+  phoneError.innerHTML = '<p>You Can Continue..</p>';
+   return true;
+}
+
+function validatePass(){
+   var pass = document.getElementById('password').value;
+    
+
+    if (pass.length ==0){
+        passwordError.innerHTML = 'Password is Required';
+        return false;
+    }
+    
+    if(!pass.match (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8}$/)){
+        passwordError.innerHTML = " Password length must be greater than 8 character, It should contain <br> 1 uppercase, 1 lowercase, 1 digit, and 1 Special Character";
+        return false;
+    }
+    passwordError.innerHTML = '<p> Password is Correct...</p>';
+   return true;
+}
+
+  function validateForm(){
+  
+    if(!validateName() || !validateEmail() || !validatePhone()|| !validatePass()){
+        submitError.style.display = 'block';
+        submitError.innerHTML = 'Please fix error before submit';
+        setTimeout(function(){submitError.style.display ='none';},3000);
+        return false;
+    }
+     if(validateName() || validateEmail() || validatePhone()|| validatePass()){
+        confirm('Click OK To Form Submit.');
+        
+ }
+
+
+
+
+ }
+
+
+
+
+
+  </script>
+</body>
+</html>
