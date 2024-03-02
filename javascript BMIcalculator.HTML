@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS BMI Calculator</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>BMI Calculator</h1>
+    
+       
+       <label for="weight">weight(kg)</label>
+        
+        <input type="text" id='weight'/><br><br>
+
+        <label for="height">height(cm)</label>
+        <input type="text" id='height'/><br><br>
+        
+        <button onclick= "calculateBmi()">Calculate</button>
+    
+    
+      </div>
+
+         
+     <h4 id='heading'></h4>
+     <p id='bmi-output'></p>
+     <p id='message'></p>
+
+
+
+      <script>
+//window.onload = () =>{
+          //  let button = document.querySelector("#btn");
+          //  button.addEventListener("click", calculateBMI);
+     //   };
+        function calculateBmi() {
+           let weight = document.getElementById('weight').value;
+           let height= document.getElementById('height').value;
+
+           let bmi = (weight/(height*height)*10000)
+
+           document.getElementById('heading').innerHTML ='Your BMI is';
+           document.getElementById('bmi-output').innerHTML = bmi.toFixed(2)
+
+           if (bmi <= 24.9){
+            document.getElementById('message').innerHTML ='You are Underweight';
+           }else if(bmi >=25 && bmi <=29.9){
+            document.getElementById('message').innerHTML = 'You are Healthy weight';
+           }else{
+            document.getElementById('message').innerHTML = 'You are Overweight';
+           }
+           
+
+
+
+                 
+
+        }
+      </script>
+</body>
+</html>
